@@ -1,5 +1,6 @@
 #!flask/bin/python
 from flask import Flask, render_template, request, jsonify
+import os
 import subprocess
 
 app = Flask(__name__)
@@ -39,23 +40,31 @@ def common_return(message, l1, l2, l3):
 
 
 def get_wu_name(name):
-    seed = 0
+    import random
+    seed = 1013
+
     for i, char in enumerate(name.lower()):
         seed += ord(char) * (i + 1)
+    random.seed(a=seed, version=2)
 
     global wu_adjs
     if len(wu_adjs) == 0:
-        wu_adjs = read_file('wu_adjs.txt')
+        wu_adjs = read_file('assets/wu_adjs.txt')
 
     global wu_nouns
     if len(wu_nouns) == 0:
-        wu_nouns = read_file('wu_nouns.txt')
+        wu_nouns = read_file('assets/wu_nouns.txt')
 
-    proc = subprocess.Popen("php random.php " + str(seed) + " " + str(len(wu_adjs)) + " " + str(len(wu_nouns)),
-                            shell=True, stdout=subprocess.PIPE)
-    script_response = proc.stdout.readline().decode().split(',')
+    # proc = subprocess.Popen("php random.php " + str(seed) + " " + str(len(wu_adjs)) + " " + str(len(wu_nouns)),
+    #                         shell=True, stdout=subprocess.PIPE)
+    # script_response = proc.stdout.readline().decode().split(',')
 
-    return wu_adjs[int(script_response[0])] + ' ' + wu_nouns[int(script_response[1])]
+    # return wu_adjs[int(script_response[0])] + ' ' + wu_nouns[int(script_response[1])]
+    # todo: this should be deterministic, not random
+    return "{adj} {noun}".format(
+        adj=wu_adjs[random.randint(0, len(wu_adjs)-1)],
+        noun=wu_nouns[random.randint(0, len(wu_nouns-1))]
+    )
 
 
 def read_file(fname):
@@ -75,4 +84,5 @@ def request_wants_type(type):
 
 
 if __name__ == '__main__':
-    app.run()
+    port = os.environ.get('PORT', 5000)
+    app.run(host='0.0.0.0', port=port)
