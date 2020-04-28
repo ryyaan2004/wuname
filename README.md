@@ -1,4 +1,4 @@
-# WuNameAAS
+# wuname
 
 Join Ghostface Killah, Inspectah Deck, Method Man, RZA, GZA, Raekwon and the late Ol' Dirty Bastard using WuNameAAS (Wu-Tang Clan Name Generator As A Service). 
 
@@ -6,8 +6,6 @@ Enter the Wu-Tang (at least in name) with this modern, RESTful, scalable solutio
 
 Try out one of the apis and gain some street cred.
 
-Please see http://unrarp.github.io/wunameaas for API documentation and examples.
- 
 # Inspiration
 
 The idea was heavily inspired by the original [Wu-Tang Clan Name Generator](http://www.mess.be/inickgenwuname.php). 

@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Wu-Tang Clan Name Generator As A Service (WuNameAAS)</title>
+    <title>Wu-Tang Clan Name Generator</title>
 
     <link href="/static/css/bootstrap-combined.min.css" rel="stylesheet">
 </head>
@@ -8,16 +8,16 @@
 <body style="">
 <div class="container">
     <div class="hero-unit">
-        <h1>WuNameAAS</h1>
+        <h1>WuName</h1>
 
-        <h2>Wu-Tang Clan Name Generator As A Service</h2>
+        <h2>Wu-Tang Clan Name Generator</h2>
     </div>
 </div>
 <div class="container">
     <div class="content" style="margin-left:50px;">
         <h2 id="introduction">Introduction</h2>
 
-        <p>Join Ghostface Killah, Inspectah Deck, Method Man, RZA, GZA, Raekwon and the late Ol' Dirty Bastard using the WuNameAAS.</p>
+        <p>Join Ghostface Killah, Inspectah Deck, Method Man, RZA, GZA, Raekwon and the late Ol' Dirty Bastard using the WuName (as a service)</p>
 
         <p>Enter the Wu-Tang (at least in name) with this modern, RESTful, scalable solution to the problem.</p>
 
@@ -27,7 +27,7 @@
 
         <h3 id="contentnegotiation">Content Negotiation</h3>
 
-        <p>WuNameAAS will respond to the following 'Accept:' values with appropriate content</p>
+        <p>WuName will respond to the following 'Accept:' values with appropriate content</p>
 
         <ul>
             <li>text/plain - Content will be returned as a plain string.</li>
@@ -48,8 +48,8 @@
 
             <tr>
                 <td>/wuami/:from</td>
-                <td>Will return content of the form ':wuname'<br>For e.g. <a href='/wuami/unrarp' target='_blank'>/wuami/unrarp</a>
-                    will return 'B-loved Criminal'
+                <td>Will return content of the form ':wuname'<br>For e.g. <a href='/wuami/crashoverride' target='_blank'>/wuami/crashoverride</a>
+                    will return 'Wicked Genius'
                 </td>
             </tr>
 
@@ -57,17 +57,15 @@
             <tr>
                 <td>/enterthewu/:from</td>
                 <td>Will return content of the form ':from from this day forward you will also be known as :wuname'<br>For
-                    e.g. <a href='/enterthewu/unrarp' target='_blank'>/enterthewu/unrarp</a> will return 'rahul from this
-                    day forward you will also be known as B-loved Criminal'
+                    e.g. <a href='/enterthewu/crashoverride' target='_blank'>/enterthewu/crashoverride</a> will return 'crashoverride from this
+                    day forward you will also be known as Wicked Genius'
                 </td>
             </tr>
         </table>
 
         <p>All contributions are very welcome.</p>
 
-        <p><a href="https://github.com/unrarp/WuNameAAS">Fork me on github</a></p>
-
-        <p>Created by <a href="https://twitter.com/unrarp">@unrarp</a> (aka B-loved Criminal)</p>
+        <p><a href="https://github.com/ryyaan2004/wuname">Fork me on github</a></p>
     </div>
 </div>
 </body>
