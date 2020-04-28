@@ -47,13 +47,9 @@ def get_wu_name(name):
         seed += ord(char) * (i + 1)
     random.seed(a=seed, version=2)
 
-    global wu_adjs
-    if len(wu_adjs) == 0:
-        wu_adjs = read_file('assets/wu_adjs.txt')
+    wu_adjs = read_file('assets/wu_adjs.txt')
 
-    global wu_nouns
-    if len(wu_nouns) == 0:
-        wu_nouns = read_file('assets/wu_nouns.txt')
+    wu_nouns = read_file('assets/wu_nouns.txt')
 
     # proc = subprocess.Popen("php random.php " + str(seed) + " " + str(len(wu_adjs)) + " " + str(len(wu_nouns)),
     #                         shell=True, stdout=subprocess.PIPE)
@@ -63,7 +59,7 @@ def get_wu_name(name):
     # todo: this should be deterministic, not random
     return "{adj} {noun}".format(
         adj=wu_adjs[random.randint(0, len(wu_adjs)-1)],
-        noun=wu_nouns[random.randint(0, len(wu_nouns-1))]
+        noun=wu_nouns[random.randint(0, len(wu_nouns)-1)]
     )
 
 
