@@ -51,12 +51,6 @@ def get_wu_name(name):
 
     wu_nouns = read_file('assets/wu_nouns.txt')
 
-    # proc = subprocess.Popen("php random.php " + str(seed) + " " + str(len(wu_adjs)) + " " + str(len(wu_nouns)),
-    #                         shell=True, stdout=subprocess.PIPE)
-    # script_response = proc.stdout.readline().decode().split(',')
-
-    # return wu_adjs[int(script_response[0])] + ' ' + wu_nouns[int(script_response[1])]
-    # todo: this should be deterministic, not random
     return "{adj} {noun}".format(
         adj=wu_adjs[random.randint(0, len(wu_adjs)-1)],
         noun=wu_nouns[random.randint(0, len(wu_nouns)-1)]
