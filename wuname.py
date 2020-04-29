@@ -1,14 +1,12 @@
-#!flask/bin/python
+#!/usr/bin/env python3
 from flask import Flask, render_template, request, jsonify
 import os
-import subprocess
 
 app = Flask(__name__)
-wu_adjs = []
-wu_nouns = []
 
 LINE_ONE = '%s from this day forward'
 LINE_TWO = ' you will also be known as '
+
 
 @app.route('/')
 def index():
@@ -25,10 +23,10 @@ def wu_am_i(name):
 def enter_the_wu(name):
     wuname = get_wu_name(name)
     message = LINE_ONE % name + LINE_TWO + wuname
-    return common_return(message, LINE_ONE % name, LINE_TWO, wuname)
+    return common_return(message, LINE_ONE % name, LINE_TWO, wuname, name)
 
 
-def common_return(message, l1, l2, l3):
+def common_return(message, line_one, line_two, wuname, original_name):
     if request_wants_type('application/json'):
         return jsonify({'message': message})
     elif request_wants_type('text/plain'):
@@ -36,7 +34,12 @@ def common_return(message, l1, l2, l3):
     elif request_wants_type('application/xml'):
         return render_template('response.xml', message=message)
     else:
-        return render_template('response.html', l1=l1, l2=l2, l3=l3)
+        return render_template('response.html',
+                               line_one=line_one,
+                               line_two=line_two,
+                               wuname=wuname,
+                               original_name=original_name
+                               )
 
 
 def get_wu_name(name):
@@ -52,8 +55,8 @@ def get_wu_name(name):
     wu_nouns = read_file('assets/wu_nouns.txt')
 
     return "{adj} {noun}".format(
-        adj=wu_adjs[random.randint(0, len(wu_adjs)-1)],
-        noun=wu_nouns[random.randint(0, len(wu_nouns)-1)]
+        adj=wu_adjs[random.randint(0, len(wu_adjs) - 1)],
+        noun=wu_nouns[random.randint(0, len(wu_nouns) - 1)]
     )
 
 
@@ -69,8 +72,8 @@ def request_wants_type(type):
     best = request.accept_mimetypes \
         .best_match([type, 'text/html'])
     return best == type and \
-           request.accept_mimetypes[best] > \
-           request.accept_mimetypes['text/html']
+        request.accept_mimetypes[best] > \
+        request.accept_mimetypes['text/html']
 
 
 if __name__ == '__main__':
