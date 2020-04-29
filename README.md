@@ -1,4 +1,5 @@
 # wuname
+![Build and Deploy to Cloud Run](https://github.com/ryyaan2004/wuname/workflows/Build%20and%20Deploy%20to%20Cloud%20Run/badge.svg)
 
 Join Ghostface Killah, Inspectah Deck, Method Man, RZA, GZA, Raekwon and the late Ol' Dirty Bastard using WuNameAAS (Wu-Tang Clan Name Generator As A Service). 
 
