@@ -16,7 +16,7 @@ def index():
 @app.route('/wuami/<name>', methods=['GET'])
 def wu_am_i(name):
     wuname = get_wu_name(name)
-    return common_return(wuname, '', '', wuname)
+    return common_return(wuname, '', '', wuname, name)
 
 
 @app.route('/enterthewu/<name>', methods=['GET'])
