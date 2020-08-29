@@ -1,5 +1,12 @@
-FROM python:3.6-alpine
-RUN apk add gcc musl-dev && pip install pipenv
+FROM python:3.6-slim-stretch
+#RUN apk add --no-cache gcc \
+#                       musl-dev \
+#                       python3-dev \
+#                       gpgme-dev \
+#                       libc-dev \
+#                       linux-headers \
+#                       && pip install pipenv
+RUN pip install pipenv
 
 COPY Pipfile /opt
 WORKDIR /opt
