@@ -16,12 +16,14 @@ def index():
 @app.route('/wuami/<name>', methods=['GET'])
 def wu_am_i(name):
     wuname = get_wu_name(name)
+    publish_event(wuname)
     return common_return(wuname, '', '', wuname, name)
 
 
 @app.route('/enterthewu/<name>', methods=['GET'])
 def enter_the_wu(name):
     wuname = get_wu_name(name)
+    publish_event(wuname)
     message = LINE_ONE % name + LINE_TWO + wuname
     return common_return(message, LINE_ONE % name, LINE_TWO, wuname, name)
 
@@ -72,8 +74,35 @@ def request_wants_type(type):
     best = request.accept_mimetypes \
         .best_match([type, 'text/html'])
     return best == type and \
-        request.accept_mimetypes[best] > \
-        request.accept_mimetypes['text/html']
+           request.accept_mimetypes[best] > \
+           request.accept_mimetypes['text/html']
+
+
+def publish_event(wuname):
+    from google.cloud import pubsub_v1
+    if os.getenv('PUBLISH_METRICS', False):
+        publisher = pubsub_v1.PublisherClient()
+        topic_name = 'projects/{project_id}/topics/{topic}'.format(
+            project_id=os.getenv('GOOGLE_CLOUD_PROJECT'),
+            topic=os.getenv('WUNAME_RECEIVED_TOPIC_NAME', 'WUNAME_RECEIVED')
+        )
+        try:
+            publisher.get_topic(topic_name)
+        except:
+            publisher.create_topic(topic_name)
+        return publisher.publish(topic_name,
+                                 b'Wu-Tang name generated',
+                                 request_ip='{}'.format(request.remote_addr),
+                                 request_path='{}'.format(request.path),
+                                 request_url='{}'.format(request.url),
+                                 wuname='{}'.format(wuname),
+                                 request_origin='{}'.format(request.origin),
+                                 request_query_string='{}'.format(request.query_string),
+                                 request_user_agent='{}'.format(request.user_agent),
+                                 request_original_name='{}'.format(request.path.rsplit('/', 1)[1])
+                                 )
+    else:
+        print('metrics not enabled')
 
 
 if __name__ == '__main__':
