@@ -7,6 +7,8 @@ Enter the Wu-Tang (at least in name) with this modern, RESTful, scalable solutio
 
 Try out one of the apis and gain some street cred.
 
+View the live app at https://wunameapp.com
+
 # Inspiration
 
 The idea was heavily inspired by the original [Wu-Tang Clan Name Generator](http://www.mess.be/inickgenwuname.php). 
