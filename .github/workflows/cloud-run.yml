@@ -33,6 +33,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - id: 'auth'
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.RUN_SA_KEY }}
+
     # Setup gcloud CLI
     - name: Set up google cloud sdk
       uses: google-github-actions/setup-gcloud@v1
