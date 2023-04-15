@@ -3,7 +3,7 @@
     <title>WuName</title>
     <meta charset="utf-8">
     <meta property="og:title" content="{{ original_name }}'s assigned Wu-Tang name">
-    <meta property="og:description" content="{{ line_one }} {{ line_two }} {{ wuname }}">
+    <meta property="og:description" content="{{ message |replace("\n", " ") }} {{ new_name }}">
     <meta property="og:site_name" content="WuName">
     <meta property="og:url" content="https://wunameapp.com">
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
@@ -11,7 +11,13 @@
 <body style="margin-top:40px;">
 <div class="container">
     <div class="hero-unit" align="center">
-        <p>{{ line_one }}<br>{{ line_two }}<br><b>{{ wuname }}</b></p>
+        <p>
+            {% set msg = message.split('\n') if message != new_name else '' %}
+            {% for para in msg %}
+                {{ para }}<br>
+            {% endfor %}
+        </p>
+        <b>{{ new_name }}</b>
     </div>
 </div>
 </body>
