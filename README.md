@@ -20,15 +20,15 @@ Template for the project was taken from [FOAAS](http://foaas.com)
 ## Roadmap
 Support names inspired by sources other than the Wu-Tang Clan.
 
--[ ] Tolkien
-  -[x] Dwarves
-  -[ ] Elves
-  -[ ] Men
-  -[ ] Uruk
--[ ] Babylon 5
-  -[ ] Narn
-  -[ ] Centauri
-  -[ ] Minbari
+- [ ] Tolkien
+  - [x] Dwarves
+  - [ ] Elves
+  - [ ] Men
+  - [ ] Uruk
+- [ ] Babylon 5
+  - [ ] Narn
+  - [ ] Centauri
+  - [ ] Minbari
 
 ## Contributing
 
