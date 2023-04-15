@@ -10,7 +10,7 @@
     <div class="hero-unit">
         <h1>WuName</h1>
 
-        <h2>Wu-Tang Clan Name Generator</h2>
+        <h2>Wu-Tang Clan Name (and other) Generator</h2>
     </div>
 </div>
 <div class="container">
@@ -23,6 +23,30 @@
 
         <p>Try out one of the apis and gain some street cred.</p>
 
+        <h3 id="announcement">New!</h3>
+        <p><b>April 2023</b> Gain some nerd cred by joining the Dwarves of Durin's Hall in Ered Luin</p>
+
+        <h3 id="roadmap">Coming "soon"</h3>
+        <p>
+            <b>Roadmap</b>
+            <ul>
+                <li> Tolkien
+                    <ul>
+                        <li>The Elves</li>
+                        <li>Mankind</li>
+                        <li>The Uruk</li>
+                    </ul>
+                </li>
+                <li> Babylon 5
+                    <ul>
+                        <li>Narn</li>
+                        <li>Centauri</li>
+                        <li>Minbari</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <br>
         <h2 id="api">API</h2>
 
         <h3 id="contentnegotiation">Content Negotiation</h3>
@@ -47,7 +71,7 @@
             </tr>
 
             <tr>
-                <td>/wuami/:from</td>
+                <td>/wuami/:name</td>
                 <td>Will return content of the form ':wuname'<br>For e.g. <a href='/wuami/crashoverride' target='_blank'>/wuami/crashoverride</a>
                     will return 'Wicked Genius'
                 </td>
@@ -55,11 +79,22 @@
 
 
             <tr>
-                <td>/enterthewu/:from</td>
-                <td>Will return content of the form ':from from this day forward you will also be known as :wuname'<br>For
+                <td>/enterthewu/:name</td>
+                <td>Will return content of the form ':name from this day forward you will also be known as :wuname'<br>For
                     e.g. <a href='/enterthewu/crashoverride' target='_blank'>/enterthewu/crashoverride</a> will return 'crashoverride from this
                     day forward you will also be known as Wicked Genius'
                 </td>
+            </tr>
+
+            <tr>
+                <td>/dwarf/:name</td>
+                <td>Will return content of the form ':name'<br>For e.g. <a href='/dwarf/crashoverride' target='_blank'>/dwarf/crashoverride</a> will return 'Frerin Firebrow'</td>
+            </tr>
+
+            <tr>
+                <td>/durinsfolk/:name</td>
+                <td>Will return content of the form 'By the beard of Durin, :name, you will henceforth be known as :dwarf_name! May your days be filled with mining precious metals, regaling us with tales of adventure, and upholding the honor of Durin's folk!'<br>
+                For an example see <a href="/durinsfolk/crashoverride" target="_blank">/durinsfolk/crashoverride</a></td>
             </tr>
         </table>
 
