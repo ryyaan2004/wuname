@@ -16,4 +16,4 @@ Werkzeug = "==1.0.0"
 google-cloud-pubsub = "==1.7.0"
 
 [requires]
-python_version = "3.6"
+python_version = "3.9"

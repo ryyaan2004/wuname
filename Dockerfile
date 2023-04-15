@@ -1,4 +1,4 @@
-FROM python:3.6-slim-stretch
+FROM python:3.9-slim-bullseye
 #RUN apk add --no-cache gcc \
 #                       musl-dev \
 #                       python3-dev \
@@ -8,9 +8,9 @@ FROM python:3.6-slim-stretch
 #                       && pip install pipenv
 RUN pip install pipenv
 
-COPY Pipfile /opt
+COPY Pipfile.lock /opt
 WORKDIR /opt
-RUN pipenv lock --requirements > requirements.txt && \
+RUN pipenv requirements > requirements.txt && \
     pip install -r /opt/requirements.txt && \
     pip install gunicorn
 
