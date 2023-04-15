@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>Dwarf Name</title>
+    <meta charset="utf-8">
+    <meta property="og:title" content="{{ original_name }}'s name when amongst the Shirefolk">
+    <meta property="og:description" content="{{ message |replace("\n"," ")}} {{ new_name }}">
+    <meta property="og:site_name" content="WuName">
+    <meta property="og:url" content="https://wunameapp.com">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+</head>
+<body style="margin-top:40px;">
+<div class="container">
+    <div class="hero-unit" align="center">
+        <p>
+            {% set msg = message.split('\n') if message != new_name else '' %}
+            {% for para in msg %}
+                {{ para }}<br>
+            {% endfor %}
+        </p>
+        <b>{{ new_name }}</b>
+    </div>
+</div>
+</body>
+</html>
