@@ -24,7 +24,7 @@
         <p>Try out one of the apis and gain some street cred.</p>
 
         <h3 id="announcement">New!</h3>
-        <p><b>April 2023</b> Gain some nerd cred by joining the Dwarves of Durin's Hall in Ered Luin</p>
+        <p><b>April 2023</b> Gain some nerd cred by joining the <b><i>Dwarves</i></b> of Durin's Hall in Ered Luin, or the <b><i>Hobbits</i></b> of the Shire</p>
 
         <h3 id="roadmap">Coming "soon"</h3>
         <p>
@@ -59,7 +59,7 @@
             <li>text/html - Content will be returned as an HTML page with a twitter bootstrap hero unit, containing the
                 message and the subtitle.
             </li>
-            <li>application/xml - Content will be returned as a XML document.</li>
+            <li>application/xml - Content will be returned as an XML document.</li>
         </ul>
 
         <h3 id="operations">Operations</h3>
@@ -96,11 +96,23 @@
                 <td>Will return content of the form 'By the beard of Durin, :name, you will henceforth be known as :dwarf_name! May your days be filled with mining precious metals, regaling us with tales of adventure, and upholding the honor of Durin's folk!'<br>
                 For an example see <a href="/durinsfolk/crashoverride" target="_blank">/durinsfolk/crashoverride</a></td>
             </tr>
+
+            <tr>
+                <td>/hobbit/:name</td>
+                <td>Will return content of the form ':name'<br>For e.g. <a href="/hobbit/crashoverride" target="_blank">/hobbit/crashoverride</a> will return 'Daisy Greenbriar'</td>
+            </tr>
+
+            <tr>
+                <td>/shirefolk/:name</td>
+                <td>Will return content of the form 'Welcome to the Shire my dear friend, :name! It's a pleasure to have you amongst our peaceful and
+                    jolly Hobbit folk. I am honored to bestow upon you a Hobbit name, which shall be known as your honorary title in our
+                    beloved Shire. Henceforth, you shall be called :hobbit_name, a name that represents your kinship with our merry
+                    Hobbiton-folk and your esteemed place in our warm-hearted community. May you find joy and merriment in the simple
+                    pleasures of the Shire, and may your days be filled with the mirth and laughter that our Hobbit-kind is known for.
+                    Welcome, :hobbit_name, to the warm embrace of the Shire!'<br>
+                For an example see <a href="/shirefolk/crashoverride" target="_blank">/shirefolk/crashoverride</a></td>
+            </tr>
         </table>
-
-        <p>All contributions are very welcome.</p>
-
-        <p><a href="https://github.com/ryyaan2004/wuname">Fork me on github</a></p>
     </div>
 </div>
 </body>

@@ -46,6 +46,26 @@ def dwarf(name):
     return common_return(message=dwarf_name, new_name=dwarf_name, original_name=name, request_type='dwarf')
 
 
+@app.route('/hobbit/<name>', methods=['GET'])
+def hobbit(name):
+    hobbit_name = get_new_name(name=name, first_name_file='hobbit_firstname.txt', second_name_file='hobbit_lastname.txt')
+    publish_event(wuname=hobbit_name)
+    return common_return(message=hobbit_name, new_name=hobbit_name, original_name=name, request_type='hobbit')
+
+
+@app.route('/shirefolk/<name>', methods=['GET'])
+def shirefolk(name):
+    hobbit_name = get_new_name(name=name, first_name_file='hobbit_firstname.txt', second_name_file='hobbit_lastname.txt')
+    publish_event(wuname=hobbit_name)
+    message = f'''Welcome to the Shire my dear friend, {name}! It's a pleasure to have you amongst our peaceful and 
+jolly Hobbit folk. I am honored to bestow upon you a Hobbit name, which shall be known as your honorary title in our 
+beloved Shire. Henceforth, you shall be called {hobbit_name}, a name that represents your kinship with our merry 
+Hobbiton-folk and your esteemed place in our warm-hearted community. May you find joy and merriment in the simple 
+pleasures of the Shire, and may your days be filled with the mirth and laughter that our Hobbit-kind is known for. 
+Welcome, {hobbit_name}, to the warm embrace of the Shire!'''
+    return common_return(message=message, new_name=hobbit_name, original_name=name, request_type='hobbit')
+
+
 def common_return(message, new_name, original_name, request_type):
     if request_wants_type('application/json'):
         return jsonify({'message': message})
