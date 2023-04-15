@@ -11,7 +11,12 @@
 <body style="margin-top:40px;">
 <div class="container">
     <div class="hero-unit" align="center">
-        <p>{{ line_one }}<br>{{ line_two }}<br><b>{{ wuname }}</b></p>
+        <p>
+            {% for para in message %}
+                {{ para }}<br>
+            {% endfor %}
+            <b>{{ wuname }}</b>
+        </p>
     </div>
 </div>
 </body>

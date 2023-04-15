@@ -4,6 +4,7 @@ import os
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     return app.send_static_file('index.html')
@@ -13,7 +14,7 @@ def index():
 def wu_am_i(name):
     wuname = get_new_name(name, first_name_file="wu_adjs.txt", second_name_file="wu_nouns.txt")
     publish_event(wuname)
-    return common_return(wuname, '', '', wuname, name)
+    return common_return(message="", new_name=wuname, original_name=name, request_type='wu')
 
 
 @app.route('/enterthewu/<name>', methods=['GET'])
@@ -23,22 +24,21 @@ def enter_the_wu(name):
     wuname = get_new_name(name, first_name_file="wu_adjs.txt", second_name_file="wu_nouns.txt")
     publish_event(wuname)
     line_one = line_one.format(name=name)
-    message = line_one + line_two + wuname
-    return common_return(message, line_one, line_two, wuname, name)
+    message = '''{line_one}\n{line_two}'''.format(line_one=line_one, line_two=line_two).split('\n')
+    return common_return(message, wuname, name, request_type='wu')
 
 
-def common_return(message, line_one, line_two, wuname, original_name):
+def common_return(message, new_name, original_name, request_type):
     if request_wants_type('application/json'):
         return jsonify({'message': message})
     elif request_wants_type('text/plain'):
         return message
     elif request_wants_type('application/xml'):
-        return render_template('wu_response.xml', message=message)
+        return render_template('{}_response.xml'.format(request_type), message=message)
     else:
-        return render_template('wu_response.html',
-                               line_one=line_one,
-                               line_two=line_two,
-                               wuname=wuname,
+        return render_template('{}_response.html'.format(request_type),
+                               message=message,
+                               wuname=new_name,
                                original_name=original_name
                                )
 
