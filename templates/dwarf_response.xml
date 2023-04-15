@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wuname:response xmlns:wuname="http://wunameapp.com/wuname">
-    <wuname:message>{{ message|replace('\n', ' ')|replace('  ', ' ')  }}</wuname:message>
+    <wuname:message>{{ message|replace('\n', ' ')|replace('  ', ' ') }}</wuname:message>
 </wuname:response>

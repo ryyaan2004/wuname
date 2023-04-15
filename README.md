@@ -9,7 +9,7 @@ Try out one of the apis and gain some street cred.
 
 View the live app at https://wunameapp.com
 
-# Inspiration
+## Inspiration
 
 The idea was heavily inspired by the original [Wu-Tang Clan Name Generator](http://www.mess.be/inickgenwuname.php). 
 
@@ -17,6 +17,19 @@ A basic idea of how this works along with a starter list of nouns and adjectives
  
 Template for the project was taken from [FOAAS](http://foaas.com)
 
-# Contributing
+## Roadmap
+Support names inspired by sources other than the Wu-Tang Clan.
+
+-[ ] Tolkien
+  -[x] Dwarves
+  -[ ] Elves
+  -[ ] Men
+  -[ ] Uruk
+-[ ] Babylon 5
+  -[ ] Narn
+  -[ ] Centauri
+  -[ ] Minbari
+
+## Contributing
 
 All contributions are very welcome.

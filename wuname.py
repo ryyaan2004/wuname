@@ -14,18 +14,36 @@ def index():
 def wu_am_i(name):
     wuname = get_new_name(name, first_name_file="wu_adjs.txt", second_name_file="wu_nouns.txt")
     publish_event(wuname)
-    return common_return(message="", new_name=wuname, original_name=name, request_type='wu')
+    return common_return(message=wuname, new_name=wuname, original_name=name, request_type='wu')
 
 
 @app.route('/enterthewu/<name>', methods=['GET'])
 def enter_the_wu(name):
     line_one = '{name} from this day forward'
-    line_two = ' you will also be known as '
+    line_two = ' you will also be known as {wuname}'
     wuname = get_new_name(name, first_name_file="wu_adjs.txt", second_name_file="wu_nouns.txt")
     publish_event(wuname)
     line_one = line_one.format(name=name)
-    message = '''{line_one}\n{line_two}'''.format(line_one=line_one, line_two=line_two).split('\n')
+    line_two = line_two.format(wuname=wuname)
+    message = '''{line_one}\n{line_two}'''.format(line_one=line_one, line_two=line_two)
     return common_return(message, wuname, name, request_type='wu')
+
+
+@app.route('/durinsfolk/<name>', methods=['GET'])
+def durins_folk(name):
+    dwarf_name = get_new_name(name=name, first_name_file='dwarf_firstname.txt', second_name_file='dwarf_lastname.txt')
+    message = '''By the beard of Durin, {name}, you will henceforth be known as {dwarf_name}!
+May your days be filled with mining precious metals, regaling us with tales 
+of adventure, and upholding the honor of Durin's folk!'''.format(name=name, dwarf_name=dwarf_name)
+    publish_event(wuname=dwarf_name)
+    return common_return(message=message, new_name=dwarf_name, original_name=name, request_type="dwarf")
+
+
+@app.route('/dwarf/<name>', methods=['GET'])
+def dwarf(name):
+    dwarf_name = get_new_name(name=name, first_name_file='dwarf_firstname.txt', second_name_file='dwarf_lastname.txt')
+    publish_event(wuname=dwarf_name)
+    return common_return(message=dwarf_name, new_name=dwarf_name, original_name=name, request_type='dwarf')
 
 
 def common_return(message, new_name, original_name, request_type):
@@ -34,11 +52,13 @@ def common_return(message, new_name, original_name, request_type):
     elif request_wants_type('text/plain'):
         return message
     elif request_wants_type('application/xml'):
-        return render_template('{}_response.xml'.format(request_type), message=message)
+        return render_template('{}_response.xml'.format(request_type),
+                               message=message,
+                               )
     else:
         return render_template('{}_response.html'.format(request_type),
                                message=message,
-                               wuname=new_name,
+                               new_name=new_name,
                                original_name=original_name
                                )
 
