@@ -21,6 +21,7 @@ Template for the project was taken from [FOAAS](http://foaas.com)
 Support names inspired by sources other than the Wu-Tang Clan.
 
 - [ ] Tolkien
+  - [x] Hobbits
   - [x] Dwarves
   - [ ] Elves
   - [ ] Men
@@ -29,6 +30,7 @@ Support names inspired by sources other than the Wu-Tang Clan.
   - [ ] Narn
   - [ ] Centauri
   - [ ] Minbari
+- [x] Hackers
 
 ## Contributing
 
