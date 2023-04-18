@@ -66,6 +66,27 @@ Welcome, {hobbit_name}, to the warm embrace of the Shire!'''
     return common_return(message=message, new_name=hobbit_name, original_name=name, request_type='hobbit')
 
 
+@app.route('/hackers/<name>', methods=['GET'])
+def hackers(name):
+    hacker_name = get_new_name(name=name, first_name_file='hacker_firstpart.txt', second_name_file='hacker_lastpart.txt')
+    publish_event(wuname=hacker_name)
+    message = f'''Welcome to our world, {name}. We're the Hackers, the elite of the digital underground. 
+We're the ones who push the boundaries, break the rules, and make our own reality. This is our playground, 
+where we dance with code, ride the information highway, and unlock doors that others can't even see. 
+Get ready to dive deep into the virtual abyss, where we trade in secrets, exploit vulnerabilities, and uncover hidden 
+truths. Here, your skills with a keyboard and your imagination are your weapons, and the possibilities are limitless. 
+So buckle up, {hacker_name}, because you're about to experience a whole new level of electrifying adventure in the 
+world of Hackers!'''
+    return common_return(message=message, new_name=hacker_name, original_name=name, request_type='hacker')
+
+
+@app.route('/hacker/<name>', methods=['GET'])
+def hacker_simple(name):
+    hacker_name = get_new_name(name=name, first_name_file='hacker_firstpart.txt', second_name_file='hacker_lastpart.txt')
+    publish_event(wuname=hacker_name)
+    return common_return(message=hacker_name, new_name=hacker_name, original_name=name, request_type='hacker')
+
+
 def common_return(message, new_name, original_name, request_type):
     if request_wants_type('application/json'):
         return jsonify({'message': message})
