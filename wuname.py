@@ -13,7 +13,6 @@ def index():
 @app.route('/wuami/<name>', methods=['GET'])
 def wu_am_i(name):
     wuname = get_new_name(name, first_name_file="wu_adjs.txt", second_name_file="wu_nouns.txt")
-    publish_event(wuname)
     return common_return(message=wuname, new_name=wuname, original_name=name, request_type='wu')
 
 
@@ -22,7 +21,6 @@ def enter_the_wu(name):
     line_one = '{name} from this day forward'
     line_two = ' you will also be known as {wuname}'
     wuname = get_new_name(name, first_name_file="wu_adjs.txt", second_name_file="wu_nouns.txt")
-    publish_event(wuname)
     line_one = line_one.format(name=name)
     line_two = line_two.format(wuname=wuname)
     message = '''{line_one}\n{line_two}'''.format(line_one=line_one, line_two=line_two)
@@ -35,28 +33,24 @@ def durins_folk(name):
     message = '''By the beard of Durin, {name}, you will henceforth be known as {dwarf_name}!
 May your days be filled with mining precious metals, regaling us with tales 
 of adventure, and upholding the honor of Durin's folk!'''.format(name=name, dwarf_name=dwarf_name)
-    publish_event(wuname=dwarf_name)
     return common_return(message=message, new_name=dwarf_name, original_name=name, request_type="dwarf")
 
 
 @app.route('/dwarf/<name>', methods=['GET'])
 def dwarf(name):
     dwarf_name = get_new_name(name=name, first_name_file='dwarf_firstname.txt', second_name_file='dwarf_lastname.txt')
-    publish_event(wuname=dwarf_name)
     return common_return(message=dwarf_name, new_name=dwarf_name, original_name=name, request_type='dwarf')
 
 
 @app.route('/hobbit/<name>', methods=['GET'])
 def hobbit(name):
     hobbit_name = get_new_name(name=name, first_name_file='hobbit_firstname.txt', second_name_file='hobbit_lastname.txt')
-    publish_event(wuname=hobbit_name)
     return common_return(message=hobbit_name, new_name=hobbit_name, original_name=name, request_type='hobbit')
 
 
 @app.route('/shirefolk/<name>', methods=['GET'])
 def shirefolk(name):
     hobbit_name = get_new_name(name=name, first_name_file='hobbit_firstname.txt', second_name_file='hobbit_lastname.txt')
-    publish_event(wuname=hobbit_name)
     message = f'''Welcome to the Shire my dear friend, {name}! It's a pleasure to have you amongst our peaceful and 
 jolly Hobbit folk. I am honored to bestow upon you a Hobbit name, which shall be known as your honorary title in our 
 beloved Shire. Henceforth, you shall be called {hobbit_name}, a name that represents your kinship with our merry 
@@ -69,7 +63,6 @@ Welcome, {hobbit_name}, to the warm embrace of the Shire!'''
 @app.route('/hackers/<name>', methods=['GET'])
 def hackers(name):
     hacker_name = get_new_name(name=name, first_name_file='hacker_firstpart.txt', second_name_file='hacker_lastpart.txt')
-    publish_event(wuname=hacker_name)
     message = f'''Welcome to our world, {name}. We're the Hackers, the elite of the digital underground. 
 We're the ones who push the boundaries, break the rules, and make our own reality. This is our playground, 
 where we dance with code, ride the information highway, and unlock doors that others can't even see. 
@@ -83,7 +76,6 @@ world of Hackers!'''
 @app.route('/hacker/<name>', methods=['GET'])
 def hacker_simple(name):
     hacker_name = get_new_name(name=name, first_name_file='hacker_firstpart.txt', second_name_file='hacker_lastpart.txt')
-    publish_event(wuname=hacker_name)
     return common_return(message=hacker_name, new_name=hacker_name, original_name=name, request_type='hacker')
 
 
@@ -136,34 +128,6 @@ def request_wants_type(type):
     return best == type and \
            request.accept_mimetypes[best] > \
            request.accept_mimetypes['text/html']
-
-
-def publish_event(wuname):
-    # any value for PUBLISH_METRICS will result in True here
-    if os.getenv('PUBLISH_METRICS', False):
-        from google.cloud import pubsub_v1
-        publisher = pubsub_v1.PublisherClient()
-        topic_name = 'projects/{project_id}/topics/{topic}'.format(
-            project_id=os.getenv('GOOGLE_CLOUD_PROJECT'),
-            topic=os.getenv('WUNAME_RECEIVED_TOPIC_NAME', 'WUNAME_RECEIVED')
-        )
-        try:
-            publisher.get_topic(topic_name)
-        except:
-            publisher.create_topic(topic_name)
-        return publisher.publish(topic_name,
-                                 b'Wu-Tang name generated',
-                                 request_ip='{}'.format(request.remote_addr),
-                                 request_path='{}'.format(request.path),
-                                 request_url='{}'.format(request.url),
-                                 wuname='{}'.format(wuname),
-                                 request_origin='{}'.format(request.origin),
-                                 request_query_string='{}'.format(request.query_string),
-                                 request_user_agent='{}'.format(request.user_agent),
-                                 request_original_name='{}'.format(request.path.rsplit('/', 1)[1])
-                                 )
-    else:
-        print('metrics not enabled')
 
 
 if __name__ == '__main__':
