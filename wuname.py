@@ -54,7 +54,7 @@ def shirefolk(name):
     message = f'''Welcome to the Shire my dear friend, {name}! It's a pleasure to have you amongst our peaceful and 
 jolly Hobbit folk. I am honored to bestow upon you a Hobbit name, which shall be known as your honorary title in our 
 beloved Shire. Henceforth, you shall be called {hobbit_name}, a name that represents your kinship with our merry 
-Hobbiton-folk and your esteemed place in our warm-hearted community. May you find joy and merriment in the simple 
+Shire-folk and your esteemed place in our warm-hearted community. May you find joy and merriment in the simple 
 pleasures of the Shire, and may your days be filled with the mirth and laughter that our Hobbit-kind is known for. 
 Welcome, {hobbit_name}, to the warm embrace of the Shire!'''
     return common_return(message=message, new_name=hobbit_name, original_name=name, request_type='hobbit')
